@@ -8,4 +8,5 @@ public interface BrouwerRepository {
 	void create(Brouwer brouwer);
 	List<Brouwer> findAll();
 	List<Brouwer> findByNaam(String beginNaam);
+	List<Brouwer> findByLetter(String letter);
 }

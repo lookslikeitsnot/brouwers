@@ -17,9 +17,9 @@ public class InMemoryBrouwerRepository implements BrouwerRepository {
 	private final Map<Long, Brouwer> brouwers = new ConcurrentHashMap<>();
 	
 	public InMemoryBrouwerRepository() {
-		brouwers.put(1L, new Brouwer(1, "Maredsous", 25000, new Adres("Keizerslaan", "11", 1000, "Brussel")));
-		brouwers.put(2L, new Brouwer(2, "Orval", 15000, new Adres("Gasthuisstraat", "31", 1000, "Brussel")));
-		brouwers.put(3L, new Brouwer(3, "Sambre", null, new Adres("Koestraat", "44", 9700, "Oudenaarde")));
+		brouwers.put(1L, new Brouwer(1, "Maredsous", 25000, new Adres("Keizerslaan", "11", 1000, "Maredsous")));
+		brouwers.put(2L, new Brouwer(2, "Orval", 15000, new Adres("Gasthuisstraat", "31", 1000, "Orval")));
+		brouwers.put(3L, new Brouwer(3, "Achouffe", 10500, new Adres("Route du Village", "44", 9700, "Achouffe-Wibrin")));
 		brouwers.put(4L, new Brouwer(4, "Sambre", 10000, new Adres("Koestraat", "46", 9700, "Oudenaarde")));
 	}
 
@@ -38,5 +38,10 @@ public class InMemoryBrouwerRepository implements BrouwerRepository {
 	@Override
 	public List<Brouwer> findByNaam(String beginNaam) {
 		return brouwers.values().stream().filter(brouwer->brouwer.getNaam().equals(beginNaam)).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Brouwer> findByLetter(String letter) {
+		return brouwers.values().stream().filter(brouwer->brouwer.getNaam().startsWith(letter)).collect(Collectors.toList());
 	}
 }
