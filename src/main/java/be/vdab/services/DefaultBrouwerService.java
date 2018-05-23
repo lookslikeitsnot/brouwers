@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import be.vdab.entities.Brouwer;
 import be.vdab.repositories.BrouwerRepository;
+import be.vdab.valueobjects.Naam;
 
 @Service
 public class DefaultBrouwerService implements BrouwerService{
@@ -26,7 +27,7 @@ public class DefaultBrouwerService implements BrouwerService{
 	}
 
 	@Override
-	public List<Brouwer> findByNaam(String beginNaam) {
+	public List<Brouwer> findByNaam(Naam beginNaam) {
 		return brouwerRepository.findByNaam(beginNaam);
 	}
 
@@ -34,5 +35,4 @@ public class DefaultBrouwerService implements BrouwerService{
 	public List<Brouwer> findByLetter(String letter) {
 		return brouwerRepository.findByLetter(letter);
 	}
-
 }

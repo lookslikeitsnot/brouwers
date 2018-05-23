@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import be.vdab.entities.Brouwer;
 import be.vdab.valueobjects.Adres;
+import be.vdab.valueobjects.Naam;
 
 @Repository
 public class InMemoryBrouwerRepository implements BrouwerRepository {
@@ -36,8 +37,8 @@ public class InMemoryBrouwerRepository implements BrouwerRepository {
 	}
 
 	@Override
-	public List<Brouwer> findByNaam(String beginNaam) {
-		return brouwers.values().stream().filter(brouwer->brouwer.getNaam().equals(beginNaam)).collect(Collectors.toList());
+	public List<Brouwer> findByNaam(Naam beginNaam) {
+		return brouwers.values().stream().filter(brouwer->brouwer.getNaam().equals(beginNaam.getName())).collect(Collectors.toList());
 	}
 
 	@Override
