@@ -11,7 +11,7 @@
 <body>
 	<v:menu />
 	<h1>Brouwers op naam</h1>
-	<c:url value='/brouwers/opnaam' var='url' />
+	<c:url value='/brouwers' var='url' />
 	<form:form action='${url}' modelAttribute='naam' method='get'>
 		<form:label path='name'>Naam:</form:label>
 		<form:errors path='name' />

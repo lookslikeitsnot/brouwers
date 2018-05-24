@@ -7,8 +7,8 @@ public class NaamValidator implements ConstraintValidator<Naam, String>{
 
 	@Override
 	public boolean isValid(String naam, ConstraintValidatorContext context) {
-		System.out.println("testing validation");
-		return naam != null && !naam.isEmpty();
+		boolean valid = naam != null && !naam.trim().isEmpty();
+		return valid;
 	}
 
 }

@@ -60,9 +60,8 @@ public class BrouwerController {
 		return new ModelAndView(OPALFABET_VIEW, "brouwers", brouwerService.findByLetter(letter));
 	}
 
-	@GetMapping(params= "name")
+	@GetMapping(params = "name")
 	ModelAndView readNaam(@Valid Naam name, BindingResult bindingResult) {
-		System.out.println("name mapped ?");
 		ModelAndView modelAndView = new ModelAndView(OPNAAM_VIEW);
 		if (!bindingResult.hasErrors()) {
 			List<Brouwer> brouwers = brouwerService.findByNaam(name);
@@ -73,5 +72,5 @@ public class BrouwerController {
 			}
 		}
 		return modelAndView;
-		}
+	}
 }

@@ -38,7 +38,7 @@ public class InMemoryBrouwerRepository implements BrouwerRepository {
 
 	@Override
 	public List<Brouwer> findByNaam(Naam beginNaam) {
-		return brouwers.values().stream().filter(brouwer->brouwer.getNaam().equals(beginNaam.getName())).collect(Collectors.toList());
+		return brouwers.values().stream().filter(brouwer->brouwer.getNaam().contains(beginNaam.getName())).collect(Collectors.toList());
 	}
 
 	@Override
