@@ -9,5 +9,7 @@
 <body>
 	<v:menu />
 	<h1>Brouwer toevoegen</h1>
+	<c:url value='/brouwers' var='url' />
+	<v:brouwerform url='${url}' knopTekst='Toevoegen' />
 </body>
 </html>

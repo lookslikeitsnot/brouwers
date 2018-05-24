@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +24,7 @@ public class BrouwerController {
 	private static final String BEGINNAAM_VIEW = "brouwers/beginnaam";
 	private static final String OPALFABET_VIEW = "brouwers/opalfabet";
 	private static final String OPNAAM_VIEW = "brouwers/opnaam";
+	private static final String REDIRECT_URL_NA_TOEVOEGEN = "redirect:/brouwers";
 	private final BrouwerService brouwerService;
 
 	public BrouwerController(BrouwerService brouwerService) {
@@ -35,8 +37,8 @@ public class BrouwerController {
 	}
 
 	@GetMapping("toevoegen")
-	String createForm() {
-		return TOEVOEGEN_VIEW;
+	ModelAndView createForm() {
+		return new ModelAndView(TOEVOEGEN_VIEW).addObject(new Brouwer());
 	}
 
 	@GetMapping("beginnaam")
@@ -72,5 +74,14 @@ public class BrouwerController {
 			}
 		}
 		return modelAndView;
+	}
+
+	@PostMapping
+	String create(@Valid Brouwer brouwer, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return TOEVOEGEN_VIEW;
+		}
+		brouwerService.create(brouwer);
+		return REDIRECT_URL_NA_TOEVOEGEN;
 	}
 }
