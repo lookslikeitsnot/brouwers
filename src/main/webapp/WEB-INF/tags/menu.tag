@@ -11,8 +11,6 @@
 				<li><a href="<c:url value='/brouwers/opnaam'/>">Op
 						naam</a></li>
 				<li><a href="<c:url value='/brouwers/toevoegen'/>">Toevoegen</a></li>
-				<li><a href="<c:url value='/brouwers/beginnaam'/>">Per
-						beginnaam</a></li>
 			</ul></li>
 
 		<c:if test='${pageContext.response.locale.language != "nl"}'>

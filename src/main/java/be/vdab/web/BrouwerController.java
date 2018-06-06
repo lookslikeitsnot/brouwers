@@ -21,7 +21,6 @@ import be.vdab.valueobjects.Naam;
 public class BrouwerController {
 	private static final String BROUWERS_VIEW = "brouwers/brouwers";
 	private static final String TOEVOEGEN_VIEW = "brouwers/toevoegen";
-	private static final String BEGINNAAM_VIEW = "brouwers/beginnaam";
 	private static final String OPALFABET_VIEW = "brouwers/opalfabet";
 	private static final String OPNAAM_VIEW = "brouwers/opnaam";
 	private static final String REDIRECT_URL_NA_TOEVOEGEN = "redirect:/brouwers";
@@ -41,20 +40,15 @@ public class BrouwerController {
 		return new ModelAndView(TOEVOEGEN_VIEW).addObject(new Brouwer());
 	}
 
-	@GetMapping("beginnaam")
-	String searchNaam() {
-		return BEGINNAAM_VIEW;
-	}
-
 	@GetMapping("opalfabet")
 	String searchByLetter() {
 		return OPALFABET_VIEW;
 	}
 
 	@GetMapping("opnaam")
-	ModelAndView findByPostcodeReeks() {
-		Naam naam = new Naam();
-		return new ModelAndView(OPNAAM_VIEW).addObject(naam);
+	ModelAndView findByNaam() {
+		System.out.println("new naam is sent");
+		return new ModelAndView(OPNAAM_VIEW).addObject(new Naam());
 	}
 
 	@GetMapping("opalfabet/{letter}")
@@ -63,10 +57,11 @@ public class BrouwerController {
 	}
 
 	@GetMapping(params = "name")
-	ModelAndView readNaam(@Valid Naam name, BindingResult bindingResult) {
+	ModelAndView readNaam(@Valid Naam naam, BindingResult bindingResult) {
+		System.out.println("name: " + naam.getName());
 		ModelAndView modelAndView = new ModelAndView(OPNAAM_VIEW);
 		if (!bindingResult.hasErrors()) {
-			List<Brouwer> brouwers = brouwerService.findByNaam(name);
+			List<Brouwer> brouwers = brouwerService.findByNaam(naam);
 			if (brouwers.isEmpty()) {
 				bindingResult.reject("geenBrouwers");
 			} else {
