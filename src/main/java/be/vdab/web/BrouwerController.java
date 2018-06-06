@@ -47,7 +47,6 @@ public class BrouwerController {
 
 	@GetMapping("opnaam")
 	ModelAndView findByNaam() {
-		System.out.println("new naam is sent");
 		return new ModelAndView(OPNAAM_VIEW).addObject(new Naam());
 	}
 
@@ -58,7 +57,6 @@ public class BrouwerController {
 
 	@GetMapping(params = "name")
 	ModelAndView readNaam(@Valid Naam naam, BindingResult bindingResult) {
-		System.out.println("name: " + naam.getName());
 		ModelAndView modelAndView = new ModelAndView(OPNAAM_VIEW);
 		if (!bindingResult.hasErrors()) {
 			List<Brouwer> brouwers = brouwerService.findByNaam(naam);
