@@ -2,6 +2,13 @@ package be.vdab.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
@@ -15,8 +22,13 @@ import org.springframework.format.annotation.NumberFormat.Style;
 import be.vdab.constraints.Naam;
 import be.vdab.valueobjects.Adres;
 
+@Entity
+@Table(name="brouwers")
 public class Brouwer implements Serializable {
 	private static final long serialVersionUID = 1L;
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long brouwerNr;
 	@SafeHtml(whitelistType=WhiteListType.NONE)
 	@NotNull
@@ -29,6 +41,7 @@ public class Brouwer implements Serializable {
 	private Integer omzet;
 	@NotNull
 	@Valid
+	@Embedded
 	private Adres adres;
 	
 	public Brouwer() {}
