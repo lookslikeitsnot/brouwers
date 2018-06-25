@@ -12,7 +12,7 @@ import be.vdab.services.WeerService;
 @Controller
 @RequestMapping("weer")
 public class WeerController {
-	private final static String VIEW = "weer";
+	private final static String VIEW = "brouwers/weer";
 	private final WeerService weerService;
 
 	public WeerController(WeerService weerService) {
@@ -24,6 +24,7 @@ public class WeerController {
 		ModelAndView modelAndView = new ModelAndView(VIEW);
 		try {
 			modelAndView.addObject("temperatuur", weerService.stadsTemperatuur(stad));
+			modelAndView.addObject("stad", stad);
 		} catch (KanWeerNietLezenException ex) {
 			modelAndView.addObject("fout", "Kan weer niet lezen");
 		}

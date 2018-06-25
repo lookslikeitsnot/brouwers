@@ -14,6 +14,6 @@ public class WeerServiceImpl implements WeerService{
 	}
 	@Override
 	public BigDecimal stadsTemperatuur(String stad) {
-		return weerClient.getTemperatuur(stad);
+		return weerClient.getStadsTemperatuur(stad);
 	}
 }

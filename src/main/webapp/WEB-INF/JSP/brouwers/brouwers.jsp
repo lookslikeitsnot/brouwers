@@ -1,6 +1,7 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@taglib prefix='v' uri='http://vdab.be/tags'%>
+<%@taglib prefix='spring' uri='http://www.springframework.org/tags'%>
 <!doctype html>
 <html lang='nl'>
 <head>
@@ -40,7 +41,12 @@
 				<td>${brouwer.adres.straat}</td>
 				<td>${brouwer.adres.huisNr}</td>
 				<td>${brouwer.adres.postcode}</td>
-				<td>${brouwer.adres.gemeente}</td>
+				<td>${brouwer.adres.gemeente}
+				<spring:url
+						value='/weer/{stad}/stadstemperatuur' var="stadstemperatuurURL">
+						<spring:param name='stad' value='${brouwer.adres.gemeente}' />
+					</spring:url> <a href='${stadstemperatuurURL}'> (temperatuur)</a>
+				</td>
 				<td>${brouwer.omzet}</td>
 			</tr>
 		</c:forEach>

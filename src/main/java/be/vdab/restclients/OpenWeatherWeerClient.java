@@ -2,6 +2,7 @@ package be.vdab.restclients;
 
 import java.math.BigDecimal;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,13 +27,14 @@ public class OpenWeatherWeerClient implements WeerClient {
 	}
 
 	@Override
-	public BigDecimal getTemperatuur(String stad) {
+	public BigDecimal getStadsTemperatuur(String stad) {
 		try {
-			
-			Temperatuur temperatuur = restTemplate.getForObject(beginOpenWeatherURL + stad + eindeOpenWeatherURL, Temperatuur.class);
-			return temperatuur.getTemperatuur();
-		} catch (RestClientException ex) {
-			LOGGER.log(Level.SEVERE, "kan koers niet lezen", ex);
+			URI openWeatherURI = new URI(beginOpenWeatherURL + stad + eindeOpenWeatherURL);
+			System.out.println("uri: " + openWeatherURI);
+			Current current = restTemplate.getForObject(openWeatherURI, Current.class);
+			return current.getTemperature().getValue();
+		} catch (RestClientException | URISyntaxException ex) {
+			LOGGER.log(Level.SEVERE, "kan weer niet lezen", ex);
 			throw new KanWeerNietLezenException();
 		}
 	}
