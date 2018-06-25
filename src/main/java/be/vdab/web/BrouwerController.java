@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ import be.vdab.services.BrouwerService;
 import be.vdab.valueobjects.Naam;
 
 @Controller
-@RequestMapping("/brouwers")
+@RequestMapping(path = "/brouwers", produces = MediaType.TEXT_HTML_VALUE)
 public class BrouwerController {
 	private static final String BROUWERS_VIEW = "brouwers/brouwers";
 	private static final String TOEVOEGEN_VIEW = "brouwers/toevoegen";

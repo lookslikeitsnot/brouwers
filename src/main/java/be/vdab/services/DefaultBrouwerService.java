@@ -29,6 +29,11 @@ public class DefaultBrouwerService implements BrouwerService{
 	public Page<Brouwer> findAll(Pageable pageable){
 		return brouwerRepository.findAll(pageable);
 	}
+	
+	@Override
+	public List<Brouwer> findAll(){
+		return brouwerRepository.findAll();
+	}
 
 	@Override
 	public List<Brouwer> findByNaam(Naam beginNaam) {

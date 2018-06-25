@@ -11,6 +11,7 @@ import be.vdab.valueobjects.Naam;
 public interface BrouwerService {
 	void create(Brouwer brouwer);
 	public Page<Brouwer> findAll(Pageable pageable);
+	public List<Brouwer> findAll();
 	List<Brouwer> findByNaam(Naam beginNaam);
 	List<Brouwer> findByLetter(String letter);
 }

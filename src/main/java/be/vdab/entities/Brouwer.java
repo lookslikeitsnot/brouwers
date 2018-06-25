@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
@@ -24,6 +25,7 @@ import be.vdab.valueobjects.Adres;
 
 @Entity
 @Table(name="brouwers")
+@XmlRootElement
 public class Brouwer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -39,7 +41,6 @@ public class Brouwer implements Serializable {
 	@Min(0)
 	@Digits(integer = 10, fraction = 2)
 	private Integer omzet;
-	@NotNull
 	@Valid
 	@Embedded
 	private Adres adres;
